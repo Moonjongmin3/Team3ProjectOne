@@ -85,14 +85,6 @@
 	color: white;
 }
 /* 유튜브 리뷰 섹션 */
-.under-space{
-	background-image: url('img/bg2.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center center;
-	width: 100%;
-	height: 1000px;
-}
 .youtube-title{
 	color: #0B3C8B;
 	text-align: center;
@@ -116,11 +108,9 @@
 .youtube-book-img{
 	margin-top: 1vw;
 	margin-left: 2.5vw;
-	width: 100%;
 	height: 17vw;
 }
 .youtube-book-img>img{
-	width: 100%;
 	height: 100%;
 }
 .youtube-book-info{
@@ -148,10 +138,25 @@
 	-webkit-line-clamp: 7;
 	-webkit-box-orient: vertical;
 }
-@media screen and (max-width: 992px) {
-  #youtube-area{
-		height: 80vw;
-	}
+#video-area{
+	padding: 0 0;
+}
+#video{
+	width: 100%;
+	height: 25vw;
+}
+#thumb-area{
+	width:100%;
+	padding: 0 0;
+}
+#thumb{
+	width: 33.33%;
+	height: auto;
+	padding: 0 0;
+	margin-right: -5px;
+}
+.demo {
+  opacity: 0.6;
 }
 @media screen and (max-width: 1200px) {
 	.youtube-book-description{
@@ -161,64 +166,19 @@
 		font-size: 12px;
 		line-height: 30px;
 	}
-}
-#video-area{
-	height: 22.5vw;
-	padding-left: 0px;
-	padding-right: 0px;
-}
-.main-video{
-	height: 23vw;
-}
-/* Hide the images by default */
-.mySlides {
-  width: 100%;
-  height: 7.5vw;
-  display: none;
-}
-.myDescription {
-  width: 100%;
-  height: 33vw;
-  display: none;
-}
-#video{
-	position: absolute;
-	width: 100%;
-	height: 100%;
-}
-#thumb-area{
-	padding-top: 0px;
-	padding-left: 0px;
-	padding-right: 0px;
-}
-
-/* Six columns side by side */
-.column {
-  float: left;
-  width: 33.33%;
-  height: 15vw;
-  overflow-y: hidden;
-}
-
-/* Add a transparency effect for thumnbail images */
-.demo {
-  opacity: 0.6;
+	.myDescription {
+	  width: 100%;
+	  height: 33vw;
+	  display: none;
+	}
 }
 @media screen and (max-width: 992px) {
     #youtube-area{
-		height: 72vw;
+		height: 65vw;
 	}
 	#video{
+		width:100%;
 		height: 45vw;
-	}
-	.main-video{
-		height: 46vw;
-	}
-	#thumb-element{
-		height: 80vw;
-	}
-	#thumb{
-		height: 20vw;
 	}
 }
 /* SNS 섹션 */

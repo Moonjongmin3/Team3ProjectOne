@@ -22,7 +22,7 @@
 <html>
 <head><title>Add Book</title></head>
 <body>
-<jsp:include page=../main/Common.jsp"/>
+<jsp:include page=../main/common.jsp"/>
 <h2>카트</h2>
 <table border="1" width="90%">
     <tr>

@@ -19,6 +19,63 @@
 
 <body>
 	<!-- 상단 공통 페이지 -->
+	<!-- 모바일 : 카테고리 리스트 섹션 -->
+	<aside>
+		<div id="mobileNavListArea">
+			<!-- 모바일 : 메인 카테고리 -->
+			<div id="mobile-mainlist">
+				<a href="javascript:void(0)" onclick="toggleMobileMainList()">X</a>
+				<ul>
+					<li><a href="javascript:void(0)" onclick="toggleMobileDomesticList()">국내도서<br></a></li>
+					<li><a href="javascript:void(0)" onclick="toggleMobileForeignList()">외국도서<br></a></li>
+					<li><a href="javascript:void(0)" onclick="toggleMobileEbookList()">E-Book</a></li>
+				</ul>
+			</div>
+			<!-- 모바일 : 서브 카테고리 -->
+			<div id="mobile-domesticlist">
+				<ul>
+					<li><a href="#">가정 살림</a></li>
+					<li><a href="#">건강 취미</a></li>
+					<li><a href="#">경제 경영</a></li>
+					<li><a href="#">국어 외국어사전</a></li>
+					<li><a href="#">대학교재</a></li>
+					<li><a href="#">만화/라이트노벨</a></li>
+					<li><a href="#">사회 정치</a></li>
+					<li><a href="#">소설/시/희곡</a></li>
+					<li><a href="#">수험서 자격증</a></li>
+					<li><a href="#">어린이</a></li>
+				</ul>
+			</div>
+			<div id="mobile-foreignlist">
+				<ul>
+					<li><a href="#">경제 경영</a></li>
+					<li><a href="#">인문 사회</a></li>
+					<li><a href="#">문학 소설</a></li>
+					<li><a href="#">취미 라이프스타일</a></li>
+					<li><a href="#">자연과학</a></li>
+					<li><a href="#">ELT 사전</a></li>
+					<li><a href="#">해외잡지</a></li>
+					<li><a href="#">컴퓨터</a></li>
+					<li><a href="#">예술 대중문화</a></li>
+					<li><a href="#">대학교재 전문서</a></li>
+				</ul>
+			</div>
+			<div id="mobile-ebooklist">
+				<ul>
+					<li><a href="#">경제 경영</a></li>
+					<li><a href="#">라이트노벨</a></li>
+					<li><a href="#">로맨스</a></li>
+					<li><a href="#">만화</a></li>
+					<li><a href="#">사회 정치</a></li>
+					<li><a href="#">소설</a></li>
+					<li><a href="#">에세이 시</a></li>
+					<li><a href="#">인문</a></li>
+					<li><a href="#">자기계발</a></li>
+					<li><a href="#">판타지/무협</a></li>
+				</ul>
+			</div>
+		</div>
+	</aside>
 	<!-- 최상단 섹션 (로그인, 장바구니 등) -->
 	<header>
 		<div class="top-bar">
@@ -77,63 +134,6 @@
 			</div>
 		</div>
 	</header>
-	<!-- 모바일 : 카테고리 리스트 섹션 -->
-	<aside>
-		<div id="mobileNavListArea">
-			<!-- 모바일 : 메인 카테고리 -->
-			<div id="mobile-mainlist">
-				<a href="javascript:void(0)" onclick="toggleMobileMainList()">X</a>
-				<ul>
-					<li><a href="javascript:void(0)" onclick="toggleMobileDomesticList()">국내도서<br></a></li>
-					<li><a href="javascript:void(0)" onclick="toggleMobileForeignList()">외국도서<br></a></li>
-					<li><a href="javascript:void(0)" onclick="toggleMobileEbookList()">E-Book</a></li>
-				</ul>
-			</div>
-			<!-- 모바일 : 서브 카테고리 -->
-			<div id="mobile-domesticlist">
-				<ul>
-					<li><a href="#">가정 살림</a></li>
-					<li><a href="#">건강 취미</a></li>
-					<li><a href="#">경제 경영</a></li>
-					<li><a href="#">국어 외국어사전</a></li>
-					<li><a href="#">대학교재</a></li>
-					<li><a href="#">만화/라이트노벨</a></li>
-					<li><a href="#">사회 정치</a></li>
-					<li><a href="#">소설/시/희곡</a></li>
-					<li><a href="#">수험서 자격증</a></li>
-					<li><a href="#">어린이</a></li>
-				</ul>
-			</div>
-			<div id="mobile-foreignlist">
-				<ul>
-					<li><a href="#">경제 경영</a></li>
-					<li><a href="#">인문 사회</a></li>
-					<li><a href="#">문학 소설</a></li>
-					<li><a href="#">취미 라이프스타일</a></li>
-					<li><a href="#">자연과학</a></li>
-					<li><a href="#">ELT 사전</a></li>
-					<li><a href="#">해외잡지</a></li>
-					<li><a href="#">컴퓨터</a></li>
-					<li><a href="#">예술 대중문화</a></li>
-					<li><a href="#">대학교재 전문서</a></li>
-				</ul>
-			</div>
-			<div id="mobile-ebooklist">
-				<ul>
-					<li><a href="#">경제 경영</a></li>
-					<li><a href="#">라이트노벨</a></li>
-					<li><a href="#">로맨스</a></li>
-					<li><a href="#">만화</a></li>
-					<li><a href="#">사회 정치</a></li>
-					<li><a href="#">소설</a></li>
-					<li><a href="#">에세이 시</a></li>
-					<li><a href="#">인문</a></li>
-					<li><a href="#">자기계발</a></li>
-					<li><a href="#">판타지/무협</a></li>
-				</ul>
-			</div>
-		</div>
-	</aside>
 	<!-- 네비게이션 섹션 -->
 	<nav>
 		<div class="nav-bar">

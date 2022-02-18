@@ -43,7 +43,7 @@ public class IndexModel extends HttpServlet {
         request.setAttribute("bestBooks", bestBooks);
         request.setAttribute("newBooks", newBooks);
         request.setAttribute("youtubeBooks", youtubeBooks);
-        request.setAttribute("main_jsp", "../main/Common.jsp");
+        request.setAttribute("main_jsp", "../main/common.jsp");
 
 
         return "../main/main.jsp";

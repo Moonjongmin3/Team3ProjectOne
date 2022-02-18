@@ -107,18 +107,14 @@
 							<div class="col-xs-10 col-xs-offset-1" id="youtube-area">
 								<div class="row">
 									<div class="col-xs-12 col-md-6" id="video-area">
-										<div class="main-video">
-											<c:forEach var="i" begin="0" end="2" step="1">
-												<div class="mySlides">
-													<iframe id="video" src="https://www.youtube.com/embed/${youtubeBooks[i].contentId}?enablejsapi=1&version=3&playerapiid=ytplayer" frameborder="0"></iframe>
-												</div>
-											</c:forEach>
-										</div>
+										<c:forEach var="i" begin="0" end="2" step="1">
+											<div class="mySlides">
+												<iframe id="video" src="https://www.youtube.com/embed/${youtubeBooks[i].contentId}?enablejsapi=1&version=3&playerapiid=ytplayer" frameborder="0"></iframe>
+											</div>
+										</c:forEach>
 										<div class="thumnail-bar" id="thumb-area">
 											<c:forEach var="i" begin="0" end="2" step="1">
-												<div class="column" id="thumb-element">
-													<img id="thumb" class="demo cursor" src="https://img.youtube.com/vi/${youtubeBooks[i].contentId}/0.jpg" style="width:100%" onmouseover="showSlides(${i+1})">
-												</div>
+												<img id="thumb" class="demo cursor" src="https://img.youtube.com/vi/${youtubeBooks[i].contentId}/mqdefault.jpg" onmouseover="showSlides(${i+1})">
 											</c:forEach>
 										</div>
 									</div>
