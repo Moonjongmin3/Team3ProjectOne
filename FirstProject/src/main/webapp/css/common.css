@@ -105,6 +105,7 @@
 	background-color: white;
 }
 /* 유튜브 섹션 - 책 소개 영역 */
+
 .youtube-book-img{
 	margin-top: 1vw;
 	margin-left: 2.5vw;
@@ -138,6 +139,7 @@
 	-webkit-line-clamp: 7;
 	-webkit-box-orient: vertical;
 }
+
 #video-area{
 	padding: 0 0;
 }
@@ -192,7 +194,7 @@
 }
 #sns-area{
 	height: 37vw;
-	position: absolute;
+	/* position: absolute; */
 	border-radius: 20px;
 	margin-top: 50px;
 	margin-bottom: 200px;
@@ -201,8 +203,13 @@
 	box-shadow: 0px 0px 80px rgba(67, 100, 247, 0.5);
 }
 #sns-area.h1{
-	position: relative;
 	top: 200px;
 	display: block;
 	margin-top: 100px;
+}
+.sns-main{
+	position:relative;
+}
+.sns-main:after{
+	content: ''; display: block; clear: both;
 }

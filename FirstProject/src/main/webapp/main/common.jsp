@@ -148,11 +148,11 @@
 						</div>
 					</div>
 					<!-- SNS 리뷰 섹션 -->
-					<div class="container-fluid">
+					<div class="container-fluid"> 
 						<div class="row">
 							<div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 sns-title"><h2>SNS 게시판</h2></div>
 						</div>
-						<div class="row">
+						<div class="sns-main"> 
 							<div class="col-xs-10 col-xs-offset-1" id="sns-area">
 								<h1>준비 중 입니다...</h1>
 							</div>

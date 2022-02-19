@@ -8,15 +8,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>MainPage</title>
 	<!-- Index 페이지 StyleSheet -->
-	<link rel="stylesheet" href="css/index.css">
-</head>
+	<link rel="stylesheet" href="../css/index.css">
+
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
 <!-- Index 페이지 StyleSheet -->
-<link rel="stylesheet" href="../css/index.css">
 <link rel="stylesheet" href="../css/common.css">
-
+</head>
 <body>
 	<!-- 상단 공통 페이지 -->
 	<!-- 모바일 : 카테고리 리스트 섹션 -->
@@ -215,13 +214,53 @@
 			</div>
 		</div>
 	</nav>
-	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+	 <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<!-- Compiled and minified JavaScript -->
 	<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 	<script src="../js/index.js"></script>
+	
 	<jsp:include page="${main_jsp }"/>
+	
+	  <!-- footer 시작 -->
+    <footer id="footer">
+        <div class="footer_wrap">
+            <div class="footer_left">
+                <div class="footer_nav">
+                    <ul>
+                        <li><a href="">베스트셀러</a></li>
+                        <li><a href="">신규도서</a></li>
+                        <li><a href="">자유게시판</a></li>
+                        <li><a href="">고객센터</a></li>
+                    </ul>
+                </div>
+                <address>
+                   서울특별시 강남구 테헤란로 132(역삼동) 한독약품빌딩 8층<br>
+                       대표이사 문종민 | 사업자등록번호 2022-02-19 | 통신판매업신고번호 2012-경기성남-0552<br>
+                    <small>Copyright © GOWOONSESANG COSMETICS Co.,Ltd. All Rights Reserved.</small>
+                </address>
+            </div>
+            <div class="footer_right">
+                <div class="sns_icon">
+                    <ul>
+                        <li><a href=""><img src="../img/sns_kakaoch.png" alt="kakao"></a></li>
+                        <li><a href=""><img src="../img/sns_youtube.png" alt="youtube"></a></li>
+                        <li><a href=""><img src="../img/sns_facebook.png" alt="facebook"></a></li>
+                        <li><a href=""><img src="../img/sns_insta.png" alt="insta"></a></li>
+                    </ul>
+                </div>
+                <div class="footer_information">
+                    <ul>
+                        <li><span>고객센터 1811-9415</span></li>
+                        <li>평일 : 09:30~16:00</li>
+                        <li>점심 : 12:30 ~ 13:30</li>
+                        <li>토요일, 일요일, 공휴일 휴무</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
