@@ -1,5 +1,9 @@
 package dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -12,13 +16,20 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import Common.DBConnPool;
-import vo.Book;
+import vo.BookVO;
 
-public class BookDAO extends DBConnPool {
+public class BookDAO {
+
     private final static String INSERT_Q = "INSERT INTO BOOKS VALUES (?,?,?,?)";
+    private Connection con;
+    private PreparedStatement psmt;
+    private Statement stmt;
+    ConnectionManager cm = new ConnectionManager();
 
-	public void insert(Book book) {
+	public void insert(BookVO book) {
         try {
+            con = cm.getConnection();
+
             psmt = con.prepareStatement(INSERT_Q);
             psmt.setInt(1,book.getId());
             psmt.setString(2,book.getName());
@@ -30,12 +41,14 @@ public class BookDAO extends DBConnPool {
         } catch (Exception e) {
             System.out.println("데이터 입력 실패...");
             e.printStackTrace();
+        }finally {
+           cm.disConnection(con,psmt);
         }
     }
 
 
-    public List<Book> selectList(Map<String, Object> map) {
-        List<Book> books = new Vector<Book>();
+    public List<BookVO> selectList(Map<String, Object> map) {
+        List<BookVO> books = new Vector<BookVO>();
         String sortBy = map.get("sortBy").toString();
 
         String query = "SELECT * FROM ("
@@ -51,15 +64,17 @@ public class BookDAO extends DBConnPool {
         query += "ORDER BY " + sortBy + " DESC ) Tb ) WHERE rNum BETWEEN ? AND ?";
         
         try {
+            con = cm.getConnection();
+
              psmt = con.prepareStatement(query);
 
              psmt.setString(1, map.get("start").toString());
              psmt.setString(2, map.get("end").toString());
 
-            rs = psmt.executeQuery();
+            ResultSet rs = psmt.executeQuery();
             
             while (rs.next()) {
-                Book book = new Book();
+                BookVO book = new BookVO();
                 book.setId(rs.getInt("id"));
                 book.setImg(rs.getString("poster"));
                 book.setName(rs.getString("title"));
@@ -102,14 +117,18 @@ public class BookDAO extends DBConnPool {
                 
                 books.add(book);
             }
+            rs.close();
+
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            cm.disConnection(con,psmt);
         }
 
         return books;
     }
-    public List<Book> selectYoutubeList() {
-        List<Book> books = new Vector<Book>();
+    public List<BookVO> selectYoutubeList() {
+        List<BookVO> books = new Vector<BookVO>();
 
         String query = "SELECT * FROM ("
         				+ "SELECT Tb.*, rownum rNum from("
@@ -119,11 +138,12 @@ public class BookDAO extends DBConnPool {
         				+ "WHERE b.content LIKE '%youtube.com%' ORDER BY sell_count"
         				+ " DESC ) Tb ) WHERE rNum BETWEEN 1 AND 3";        
         try {
+             con = cm.getConnection();
              stmt = con.createStatement();
-             rs = stmt.executeQuery(query);
+             ResultSet rs = stmt.executeQuery(query);
             
             while (rs.next()) {
-                Book book = new Book();
+                BookVO book = new BookVO();
                 book.setId(rs.getInt("id"));
                 book.setImg(rs.getString("poster"));
                 book.setName(rs.getString("title"));
@@ -165,8 +185,12 @@ public class BookDAO extends DBConnPool {
 
                 books.add(book);
             }
+            rs.close();
+            stmt.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            cm.disConnection(con,psmt);
         }
 
         return books;
@@ -182,10 +206,12 @@ public class BookDAO extends DBConnPool {
         }
 
         try {
+            con=cm.getConnection();
             stmt = con.createStatement();   // 쿼리문 생성
-            rs = stmt.executeQuery(query);  // 쿼리 실행
+            ResultSet rs = stmt.executeQuery(query);  // 쿼리 실행
             rs.next();  // 커서를 첫 번째 행으로 이동
             totalCount = rs.getInt(1);  // 첫 번째 칼럼 값을 가져옴
+
         }
         catch (Exception e) {
             System.out.println("게시물 수를 구하는 중 예외 발생");
@@ -194,8 +220,8 @@ public class BookDAO extends DBConnPool {
 
         return totalCount;
     }
-    public Book findBook(String bookId) {
-        Book book = new Book();
+    public BookVO findBook(String bookId) {
+        BookVO book = new BookVO();
 
         if (bookId == null) System.out.println("책 ID를 입력받지 못했습니다.");
         String query = "SELECT b.*, mc.NAME main_category, sc.NAME sub_category "
@@ -205,12 +231,13 @@ public class BookDAO extends DBConnPool {
                         + " WHERE b.ID = ?";
 
         try {
+            con=cm.getConnection();
             psmt = con.prepareStatement(query);
             psmt.setString(1, bookId);
-            rs = psmt.executeQuery();
+            ResultSet rs = psmt.executeQuery();
 
             while (rs.next()) {
-                book = new Book();
+                book = new BookVO();
                 book.setId(rs.getInt("id"));
                 book.setImg(rs.getString("poster"));
                 book.setName(rs.getString("title"));
@@ -227,8 +254,11 @@ public class BookDAO extends DBConnPool {
                 book.setMainCategory(rs.getString("main_category"));
                 book.setSubCategory(rs.getString("sub_category"));
             }
+            rs.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            cm.disConnection(con,psmt);
         }
 
         return book;

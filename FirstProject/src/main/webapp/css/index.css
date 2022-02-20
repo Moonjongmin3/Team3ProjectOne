@@ -6,6 +6,9 @@
 body{
 	margin: 0px;
 }
+section{
+	overflow: hidden;
+}
 /* aside 태그 */
 aside{
 }
@@ -302,6 +305,26 @@ nav{
 	  transition: 1s;
 	}
 }
+.cscenter-main{
+	position:relative;
+}
+.cscenter-nav {
+	position:absolute;
+	list-style:none;
+	display:none;
+	width:100%;
+	margin-top: 10px;
+	background-color: #6FB1Fc;
+}
+.cscenter-main:hover .cscenter-nav{
+	display: block;
+}
+.cscenter-nav >li{
+	display: inline-block;
+	width: 100%;
+	padding:  5px 10px;
+	
+}
 .nav-option{
   width: 20%;
   float: left;
@@ -359,6 +382,7 @@ nav{
 	}
 }
 .nav-mainlist>ul>li{
+	text-align:center;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	text-decoration: none;

@@ -2,7 +2,7 @@ package vo;
 
 import java.util.Date;
 
-public class User {
+public class UserVO {
     // 멤버 변수 선언
     private String id;
     private String password;

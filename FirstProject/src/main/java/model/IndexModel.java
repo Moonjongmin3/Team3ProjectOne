@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.RequestMapping;
 import dao.BookDAO;
-import vo.Book;
+import vo.BookVO;
 
 public class IndexModel extends HttpServlet {
 
@@ -22,9 +22,9 @@ public class IndexModel extends HttpServlet {
         ServletContext application = request.getServletContext();
 
         BookDAO bookDAO = new BookDAO();
-        List<Book> bestBooks;
-        List<Book> newBooks;
-        List<Book> youtubeBooks;
+        List<BookVO> bestBooks;
+        List<BookVO> newBooks;
+        List<BookVO> youtubeBooks;
         Map<String, Object> map = new HashMap<String, Object>();
 
         String sortBy = application.getInitParameter("DEFAULT_SORT");
@@ -38,7 +38,7 @@ public class IndexModel extends HttpServlet {
         map.replace("sortBy", "regdate");
         newBooks = bookDAO.selectList(map);
         youtubeBooks = bookDAO.selectYoutubeList();
-        bookDAO.close();
+//        bookDAO.close();
 
         request.setAttribute("bestBooks", bestBooks);
         request.setAttribute("newBooks", newBooks);

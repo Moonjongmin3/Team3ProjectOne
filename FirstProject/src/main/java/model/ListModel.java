@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.BookDAO;
-import vo.Book;
+import vo.BookVO;
 
 public class ListModel extends HttpServlet {
 
@@ -54,8 +54,8 @@ public class ListModel extends HttpServlet {
         map.put("end", end);
         /*** 페이지 처리 end ***/
 
-        List<Book> books = bookDAO.selectList(map);
-        bookDAO.close();
+        List<BookVO> books = bookDAO.selectList(map);
+//        bookDAO.close();
         
         int startBlock = ((pageNum - 1)/ blockPage) * blockPage + 1;
         int startBlockOfLast = (((int) Math.ceil((double)totalCount / pageSize) - 1)/ blockPage) * blockPage + 1;

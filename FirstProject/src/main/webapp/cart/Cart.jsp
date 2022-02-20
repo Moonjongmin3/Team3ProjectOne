@@ -1,10 +1,10 @@
 <%@ page import="java.util.*" %>
-<%@ page import="vo.Book" %>
+<%@ page import="vo.BookVO" %>
 <%@ page import="dao.CartDAO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%! List<Book> books; %>
+<%!List<BookVO> books;%>
 <%
 	/*if (session.getAttribute("UserId") != null) {
         // 카트 ID 가져오기

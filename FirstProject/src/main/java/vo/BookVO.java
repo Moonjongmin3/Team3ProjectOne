@@ -1,6 +1,6 @@
 package vo;
 
-public class Book {
+public class BookVO {
     private int id;
     private String name;
     private String img;

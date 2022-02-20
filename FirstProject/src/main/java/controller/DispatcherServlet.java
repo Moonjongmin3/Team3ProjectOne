@@ -20,9 +20,11 @@ public class DispatcherServlet extends HttpServlet {
 	List<String> modelList=new ArrayList<>();
 	public void init(ServletConfig config) throws ServletException {
 		modelList.add("model.IndexModel");
-		modelList.add("model.CartModel");
-		modelList.add("model.ListModel");
-		modelList.add("model.UserModel");
+		modelList.add("model.NoticeModel");
+//		modelList.add("model.CartModel");
+//		modelList.add("model.ListModel");
+//		modelList.add("model.UserModel");
+		
 	}
 
 
@@ -39,9 +41,10 @@ public class DispatcherServlet extends HttpServlet {
 				// 2. 메소드 찾기
 				// clsName에 클래스의 모든 정보를 가지고 있다
 				// clsName(클래스 정보) => 메소드 전체를 가지고온다.
+				
 				Method[] methods = clsName.getDeclaredMethods();
 				for(Method m:methods){
-
+			
 					RequestMapping rm =
 							m.getDeclaredAnnotation(RequestMapping.class);
 					// 어노테이션이 없는 경우에는 에러발생

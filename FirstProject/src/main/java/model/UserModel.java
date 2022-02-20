@@ -12,8 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import dao.CartDAO;
 import dao.UserDAO;
-import vo.Book;
-import vo.User;
+import vo.BookVO;
+import vo.UserVO;
 
 public class UserModel extends HttpServlet{
 
@@ -26,7 +26,7 @@ public class UserModel extends HttpServlet{
 
 		// 회원 테이블 DAO를 통해 회원 정보 DTO 획득
 		UserDAO dao = new UserDAO();
-		User user = dao.getUser(userId, userPwd);
+		UserVO user = dao.getUser(userId, userPwd);
 		dao.close();
 
 		// 로그인 성공 여부에 따른 처리

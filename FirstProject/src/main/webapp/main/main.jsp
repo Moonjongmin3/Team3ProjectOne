@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
 <!-- Index 페이지 StyleSheet -->
 <link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/customer.css">
 </head>
 <body>
 	<!-- 상단 공통 페이지 -->
@@ -110,7 +111,7 @@
 		<div class="middle-inner">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="hidden-xs col-sm-1 col-sm-offset-1" id="logo-space"><a href="index.do">LOGO</a></div>
+					<div class="hidden-xs col-sm-1 col-sm-offset-1" id="logo-space"><a href="../main/main.do">LOGO</a></div>
 					<div class="col-xs-12 col-xs-offset-0 col-sm-8 col-md-6 col-sm-offset-1">
 						<form action="BookList.do" method="get" name="search_form" class="form-inline">
 							<div class="form-group search-group">
@@ -144,14 +145,19 @@
 				<div class="nav-option hidden-xs hidden-sm"><a href="javascript:void(0)">베스트셀러</a></div>
 				<div class="nav-option hidden-xs hidden-sm"><a href="javascript:void(0)">신간도서</a></div>
 				<div class="nav-option hidden-xs hidden-sm"><a href="javascript:void(0)">자유게시판</a></div>
-				<div class="nav-option hidden-xs hidden-sm"><a href="javascript:void(0)">고객센터</a></div>
+				<div class="nav-option hidden-xs hidden-sm cscenter-main"><a href="../customer/notice.do">고객센터</a>
+					 <ul class="cscenter-nav">
+								<li><a href="../customer/notice.do">공지사항</a></li>
+								<li><a href="#">FAQ</a></li>
+							</ul>
+				</div>
 				<!-- Mobil 네비게이션 바 -->
 				<div class="swiper navSwiper hidden-md hidden-lg">
 					<div class="swiper-wrapper nav-mobile-wrapper">
 						<div class="swiper-slide nav-mobile-option"><a href="javascript:void(0)">베스트셀러</a></div>
 						<div class="swiper-slide nav-mobile-option"><a href="javascript:void(0)">신간도서</a></div>
 						<div class="swiper-slide nav-mobile-option"><a href="javascript:void(0)">자유게시판</a></div>
-						<div class="swiper-slide nav-mobile-option"><a href="javascript:void(0)">고객센터</a></div>
+						<div class="swiper-slide nav-mobile-option"><a href="../customer/notice.do">고객센터</a></div>
 					</div>
 				</div>
 			</div>

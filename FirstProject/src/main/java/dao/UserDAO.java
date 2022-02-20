@@ -3,12 +3,12 @@ package dao;
 import javax.servlet.ServletContext;
 
 import Common.DBConnPool;
-import vo.User;
+import vo.UserVO;
 
 public class UserDAO extends DBConnPool {
     // 명시한 아이디/패스워드와 일치하는 회원 정보를 반환합니다.
-    public User getUser(String id, String password) {
-        User user = new User();  // 회원 정보 DTO 객체 생성
+    public UserVO getUser(String id, String password) {
+        UserVO user = new UserVO();  // 회원 정보 DTO 객체 생성
         String query = "SELECT * FROM user_3 WHERE id=? AND password=?";  // 쿼리문 템플릿
 
         try {
@@ -35,6 +35,8 @@ public class UserDAO extends DBConnPool {
         }
         catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            close();
         }
 
         return user;  // DTO 객체 반환

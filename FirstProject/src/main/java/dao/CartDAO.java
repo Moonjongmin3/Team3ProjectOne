@@ -6,7 +6,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 
 import Common.DBConnPool;
-import vo.Book;
+import vo.BookVO;
 
 public class CartDAO extends DBConnPool {
     private final static String INSERT_Q = "INSERT INTO BOOKS_CART VALUES (BOOKS_CART_SEQ.NEXTVAL,?,?,?)";
@@ -26,7 +26,7 @@ public class CartDAO extends DBConnPool {
         }
         return cartId;
     }
-    public void insert(Book book, int cartId) {
+    public void insert(BookVO book, int cartId) {
         try {
             psmt = con.prepareStatement(INSERT_Q);
             psmt.setInt(1,cartId);
@@ -40,11 +40,13 @@ public class CartDAO extends DBConnPool {
         } catch (Exception e) {
             System.out.println("카트에 넣기 실패...");
             e.printStackTrace();
+        }finally {
+            close();
         }
     }
 
-    public List<Book> selectList(int cartId) {
-        List<Book> books = new ArrayList<>();
+    public List<BookVO> selectList(int cartId) {
+        List<BookVO> books = new ArrayList<>();
 
         String query = "SELECT b.*, bc.QUANTITY FROM books b JOIN books_cart bc ON b.ID = bc.BOOK_ID WHERE CART_ID = " + cartId
                 + " ORDER BY bc.ID DESC ";
@@ -54,7 +56,7 @@ public class CartDAO extends DBConnPool {
             rs = stmt.executeQuery(query);
 
             while (rs.next()) {
-                Book book = new Book();
+                BookVO book = new BookVO();
                 book.setId(rs.getInt("id"));
                 book.setImg(rs.getString("img"));
                 book.setName(rs.getString("name"));
@@ -66,6 +68,8 @@ public class CartDAO extends DBConnPool {
             close();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            close();
         }
 
         return books;

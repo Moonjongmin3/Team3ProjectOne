@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.BookDAO;
 import dao.CartDAO;
-import vo.Book;
+import vo.BookVO;
 
 @WebServlet()
 public class CartModel extends HttpServlet{
@@ -32,28 +32,28 @@ public class CartModel extends HttpServlet{
 			// 책 객체 생성
 			BookDAO bookDAO = new BookDAO();
 			String bookId = request.getParameter("bookId");
-			Book book = bookDAO.findBook(bookId);
+			BookVO book = bookDAO.findBook(bookId);
 			// 카트에 책 넣기
 			cartDAO.insert(book, cartId);
 			// 연결 해제
 			cartDAO.close();
-			bookDAO.close();
+//			bookDAO.close();
 		} else {
 			// 비회원 상태
 			if (session.getAttribute("cart") == null) {
-				List<Book> cart = new ArrayList<>();
+				List<BookVO> cart = new ArrayList<>();
 				session.setAttribute("cart", cart);
 			}
 			String bookId = request.getParameter("bookId");
 			
 			BookDAO bookDAO = new BookDAO();
-			Book book = bookDAO.findBook(bookId);
+			BookVO book = bookDAO.findBook(bookId);
 			// 연결 해제
-			bookDAO.close();
+//			bookDAO.close();
 			
 			book.setQuantity(1); // 장바구니 담을 때 개수 1개 조정
 
-			List<Book> cart = (ArrayList<Book>) session.getAttribute("cart");
+			List<BookVO> cart = (ArrayList<BookVO>) session.getAttribute("cart");
 			cart.add(book);
 			int lastIndexOfCart = cart.size() - 1;
 			session.setAttribute("lastIndexOfCart", lastIndexOfCart);
