@@ -104,7 +104,7 @@ public class NoticeModel {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return "notice_detail.do?no="+no+"&page="+page;
+        return "redirect:notice_detail.do?no="+no+"&page="+page;
     }
     
     @RequestMapping("customer/notice_delete.do")
@@ -119,7 +119,7 @@ public class NoticeModel {
             
 //            response.sendRedirect("notice.do?page="+page);
             
-        return "notice.do?page="+page;
+        return "redirect:notice.do?page="+page;
     }
     
     @RequestMapping("customer/notice_insert.do")
@@ -148,7 +148,7 @@ public class NoticeModel {
             
             dao.noticeInsertData(vo);
 //            response.sendRedirect("notice.do");
-            return "notice.do";
+            return "redirect:notice.do";
     }
 }
 
