@@ -28,7 +28,7 @@ a {
 section{
     width: 100%;
 }
-.nav_wrap{
+.notice_nav_wrap{
     width: 100%;
     height: 50px;
     border-top: 1px solid #ccc;
@@ -36,7 +36,7 @@ section{
     box-sizing: border-box;
     clear: both;
 }
-.nav_bar {
+.notice_nav_bar {
     width: 1080px;
     height: 50px;
     margin: 0px auto;
@@ -44,11 +44,11 @@ section{
 }
 
 
-.nav_bar>ul {
+.notice_nav_bar>ul {
     position: absolute;
 }
 
-.nav_bar>ul>li {
+.notice_nav_bar>ul>li {
     float: left;
     padding-right: 10px;
     line-height: 50px;
@@ -93,7 +93,7 @@ section{
     right: 220px;
 }
 
-.search-area::after {
+.notice_search-area::after {
     content: "";
     width: 200px;
     height: 1.5px;
@@ -104,7 +104,7 @@ section{
     z-index: -100;
 }
 
-.search_btn {
+.notice_search_btn {
     background-image: url(../img/uio_srch_btn_small.svg);
     background-size: cover;
     width: 21px;

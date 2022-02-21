@@ -16,6 +16,7 @@
 <!-- Index 페이지 StyleSheet -->
 <link rel="stylesheet" href="../css/common.css">
 <link rel="stylesheet" href="../css/customer.css">
+<link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
 	<!-- 상단 공통 페이지 -->
@@ -84,24 +85,35 @@
 					<div class="col-lg-5 col-sm-12"></div>
 					<div class="col-lg-7 col-sm-12 top-bar-content">
 						<ul class="top-list">
+							<c:if test="${sessionScope.userId != null}" var="loginCheck">
 							<li class="top-list-element cart"><a href="#">장바구니</a></li>
 							<li class="top-list-element mypage"><a href="#">주문배송</a></li>
-							<c:if test="${userId != null}" var="loginCheck">
-								<li class="top-list-element sign-up"><a href="#">마이페이지</a></li>
+							<li class="top-list-element sign-up"><a href="#">마이페이지</a></li>
 							</c:if>
-							<c:if test="${not loginCheck}">
+							<c:if test="${sessionScope.userId == null}">
 								<li class="top-list-element sign-up"><a href="#">회원가입</a></li>
 							</c:if>
 							<li class="top-list-element sign-in">
 								<div class="btn-sign-in">
-									<c:if test="${loginCheck}">
-										<a href="../login/Logout.jsp">로그아웃</a>
+									<c:if test="${sessionScope.userId != null}" var="loginCheck">
+										<a href="../login/logout.do">로그아웃</a>
 									</c:if>
-									<c:if test="${not loginCheck}">
-										<a href="../login/Login.jsp">로그인</a>
+									<c:if test="${sessionScope.userId == null}" var="loginCheck">
+										<a href="../login/login.do">로그인</a>
 									</c:if>
 								</div>
 							</li>
+							<c:if test="${sessionScope.userId != null}">
+							<li class="top-list-element">
+								${sessionScope.userName }
+								<c:if test="${sessionScope.admin==0}">
+									<sub>님</sub>
+								</c:if>
+								<c:if test="${sessionScope.admin==1}">
+									<sub>운영자</sub>
+								</c:if>
+							</li>
+							</c:if>
 						</ul>
 					</div>
 				</div>

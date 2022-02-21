@@ -11,37 +11,51 @@ public class NoticeModel {
 	
     @RequestMapping("customer/notice.do")
     public String noticeList(HttpServletRequest request, HttpServletResponse response){
+        try {
+            // 제목+내용 아직 구현 못함...
+            request.setCharacterEncoding("UTF-8");
+            String type = request.getParameter("type");
+            String keyword = request.getParameter("keyword");
+            String page = request.getParameter("page");
 
-        String page = request.getParameter("page");
-        boolean prev=true;
-        boolean next=true;
-        if(page==null) {
-            page = "1"; // 첫 페이지 실행(default)
-            prev=false;
+            if(keyword==null){
+                keyword="";
+            }
+
+            if(type==null) {
+                type = "title";
+            }
+
+
+            if (page == null) {
+                page = "1"; // 첫 페이지 실행(default)
+
+            }
+            int curpage = Integer.parseInt(page); // 현재 페이지 만들기
+            int block = 5;
+            int startpage = ((curpage - 1) / block * block) + 1;
+            int endpage = startpage - 1 + block;
+
+            NoticeDAO dao = new NoticeDAO();
+            int total = dao.totalCount(type,keyword);
+            if (endpage > total) {
+                endpage = total;
+            }
+
+            List<NoticeVO> list = dao.noticeList(curpage,type,keyword);
+
+            request.setAttribute("type",type);
+            request.setAttribute("keyword",keyword);
+            request.setAttribute("startpage", startpage);
+            request.setAttribute("endpage", endpage);
+            request.setAttribute("total", total);
+            request.setAttribute("curpage", curpage);
+            request.setAttribute("notice_list", list);
+            request.setAttribute("path", "공지사항");
+            request.setAttribute("main_jsp", "../customer/notice.jsp");
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        int curpage = Integer.parseInt(page); // 현재 페이지 만들기
-        int block = 5;
-        int startpage=((curpage-1)/block*block)+1;
-        int endpage=startpage-1+block;
-
-        NoticeDAO dao = new NoticeDAO();
-        int total=dao.totalCount();
-        if(endpage>total) {
-            endpage = total;
-            next=false;
-        }
-
-        List<NoticeVO> list = dao.noticeList(curpage);
-        
-        request.setAttribute("next",next);
-        request.setAttribute("prev",prev);
-        request.setAttribute("startpage",startpage);
-        request.setAttribute("endpage",endpage);
-        request.setAttribute("total",total);
-        request.setAttribute("curpage",curpage);
-        request.setAttribute("notice_list",list);
-        request.setAttribute("path","공지사항");
-        request.setAttribute("main_jsp","../customer/notice.jsp");
         return "../main/main.jsp";
     }
 
@@ -133,6 +147,8 @@ public class NoticeModel {
     
     @RequestMapping("customer/notice_insert_ok.do")
     public String noticeInsert(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setCharacterEncoding("UTF-8");
             String title = request.getParameter("title");
             String content = request.getParameter("content");
 //            HttpSession session = request.getSession();
@@ -148,7 +164,23 @@ public class NoticeModel {
             
             dao.noticeInsertData(vo);
 //            response.sendRedirect("notice.do");
-            return "redirect:notice.do";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "redirect:notice.do";
+    }
+    @RequestMapping("customer/notice_search.do")
+    public String noticeSearch(HttpServletRequest request,HttpServletResponse response){
+        try {
+            request.setCharacterEncoding("UTF-8");
+            String notice_search_cate = request.getParameter("notice_search_cate");
+            String notice_search = request.getParameter("notice_search");
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "../main/main.jsp";
     }
 }
 

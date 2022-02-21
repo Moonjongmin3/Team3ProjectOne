@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,7 +75,9 @@
                         </tr>
                         <tr>
                             <td class="text-right" colspan="2">
+                                     <c:if test="${sessionScope.admin==1}">
                                     <button class="btn btn-sm btn-danger">작성</button>
+                                     </c:if>
                                     <input type="button" value="취소" class="btn btn-sm btn-warning"
                                            onclick="javascript:history.back()">
                             </td>

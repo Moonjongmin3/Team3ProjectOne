@@ -11,6 +11,7 @@ public class NoticeVO {
     private Date updated_At;
     private int hit;
 
+
     public int getHit() {
         return hit;
     }

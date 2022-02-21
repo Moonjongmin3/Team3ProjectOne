@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,9 +73,10 @@
                     </tr>
                     <tr>
                         <td class="text-right" colspan="4">
-                            <%-- 로그인 구현되면 admin계정만 접근 가능하도록 수정 --%>
-                            <a href="notice_update.do?page=${page}&no=${notice.no}" class="btn btn-xs btn-info">수정</a>
-                            <a href="notice_delete.do?page=${page}&no=${notice.no}" class="btn btn-xs btn-danger">삭제</a>
+                            <c:if test="${sessionScope.admin==1}">
+                                <a href="notice_update.do?page=${page}&no=${notice.no}" class="btn btn-xs btn-info">수정</a>
+                                <a href="notice_delete.do?page=${page}&no=${notice.no}" class="btn btn-xs btn-danger">삭제</a>
+                            </c:if>
                             <a href="notice.do?page=${page }" class="btn btn-xs btn-success">목록</a>
                         </td>
                     </tr>

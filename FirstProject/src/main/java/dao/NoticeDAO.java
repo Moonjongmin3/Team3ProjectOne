@@ -13,27 +13,32 @@ public class NoticeDAO{
     private PreparedStatement psmt;
     private ConnectionManager cm = new ConnectionManager();
 
-    public List<NoticeVO> noticeList(int page){
+    public List<NoticeVO> noticeList(int page,String cate,String Keyword){
         List<NoticeVO> list = new ArrayList<>();
         try{
+//            제목+내용 아직 구현 못함...
             con=cm.getConnection();
             String sql="SELECT no,title,created_at,num " +
                     "FROM (SELECT no,title,created_at,rownum as num " +
-                    "FROM (SELECT no,title,created_at FROM notice_3 order by no DESC)) " +
+                    "FROM (SELECT no,title,created_at FROM notice_3 " +
+                    "WHERE "+cate+" LIKE '%'||?||'%' "+
+                    "order by no DESC)) " +
                     "WHERE num between ? and ?";
             int rowSize=10;
             int start=(rowSize*page)-(rowSize-1);
             int end=rowSize*page;
             psmt =con.prepareStatement(sql);
-            psmt.setInt(1,start);
-            psmt.setInt(2,end);
+
+
+            psmt.setString(1,Keyword);
+            psmt.setInt(2,start);
+            psmt.setInt(3,end);
             ResultSet rs = psmt.executeQuery();
             while (rs.next()){
                 NoticeVO vo = new NoticeVO();
                 vo.setNo(rs.getInt(1));
                 vo.setTitle(rs.getString(2));
                 vo.setCreated_At(rs.getDate(3));
-
                 list.add(vo);
             }
         }catch (Exception e){
@@ -44,12 +49,14 @@ public class NoticeDAO{
         return list;
     }
 
-    public int totalCount(){
+    public int totalCount(String cate,String keyword){
         int total=0;
         try{
         	con=cm.getConnection();
-            String sql="SELECT CEIL(COUNT(*)/10.0) FROM notice_3";
+            String sql="SELECT CEIL(COUNT(*)/10.0) FROM notice_3 " +
+                    "WHERE "+cate+" LIKE '%'||?||'%' ";
             psmt=con.prepareStatement(sql);
+            psmt.setString(1,keyword);
             ResultSet rs=psmt.executeQuery();
             rs.next();
             total=rs.getInt(1);
@@ -171,5 +178,41 @@ public class NoticeDAO{
         }finally {
             cm.disConnection(con,psmt);
         }
+    }
+
+    public List<NoticeVO> noticeSearchData(String search_cate, String search, int page){
+        List<NoticeVO> list = new ArrayList<>();
+        try{
+            con=cm.getConnection();
+            String sql="SELECT no,title,created_at,num " +
+                    "FROM (SELECT no,title,created_at,rownum as num " +
+                    "FROM (SELECT no,title,created_at FROM notice_3 " +
+                    "WHERE ? LIKE '%'||?||'%'"+
+                    "order by no DESC)) " +
+                    "WHERE num between ? and ?";
+            int rowNum=10;
+            int start=(rowNum*page)-(rowNum-1);
+            int end=rowNum*page;
+            psmt=con.prepareStatement(sql);
+            psmt.setString(1,search_cate);
+            psmt.setString(2,search);
+            psmt.setInt(3,start);
+            psmt.setInt(4,end);
+            ResultSet rs= psmt.executeQuery();
+            while(rs.next()){
+                NoticeVO vo = new NoticeVO();
+                vo.setNo(rs.getInt(1));
+                vo.setTitle(rs.getString(2));
+                vo.setCreated_At(rs.getDate(3));
+
+                list.add(vo);
+            }
+            rs.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            cm.disConnection(con,psmt);
+        }
+        return list;
     }
 }

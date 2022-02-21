@@ -9,8 +9,8 @@
 </head>
 <body>
 	<section>
-		<div class="nav_wrap">
-			<div class="nav_bar">
+		<div class="notice_nav_wrap">
+			<div class="notice_nav_bar">
 				<ul>
 					<li><img src="../img/ico_bc_home.svg" style="padding-bottom: 3px;"></li>
 					<li>></li>
@@ -59,23 +59,17 @@
 				<div class="top">
 					<h3>공지사항</h3>
 					<div class="notice_search_bar">
-						<select name="notice_search">
-							<option value="total">제목+내용</option>
-							<option value="title">제목</option>
-							<option value="content">내용</option>
-						</select>
-						 <div class="search-area">
-							<form method="get" action="">
-								<!-- <select class="input-sm" name="find">
-									<option value="total">제목+내용</option>
-									<option value="title">제목</option>
-									<option value="content">내용</option>
-								</select> -->
-								<input type="text" placeholder="검색어를 입력해 주세요" size=23 name="notice">
-	<!--							<input type="submit" class="btn btn-sm btn-default" value="검색">-->
-							<button type="submit" class="search_btn"></button>
-								<div class="search_icon"></div>
-							</form>
+						 <div class="notice_search-area">
+						 <form method="get" action="../customer/notice.do">
+							 <select name="type">
+								<option ${(type=="TC")?"selected":""} value="TC">제목+내용</option>
+								<option ${(type=="title")?"selected":""} value="title">제목</option>
+								<option ${(type=="content")?"selected":""} value="content">내용</option>
+							</select>
+							<input type="text" placeholder="검색어를 입력해 주세요" value="${keyword }" size=23 name="keyword">
+							<button type="submit" class="notice_search_btn"></button>
+							<div class="search_icon"></div>
+						</form>
 						</div>
 					</div>
 				</div>
@@ -100,27 +94,29 @@
 						<!-- 넘김 버튼 변경 예정 -->
 						<ul>
 							<c:if test="${curpage!=1}">
-								<li class="prev_first"><a href="notice.do?page=1" class="pageicon"></a></li>
-								<li class="prev"><a href="notice.do?page=${curpage-1}" class="pageicon"></a></li>
+								<li class="prev_first"><a href="notice.do?page=1&type=${type}&keyword=${keyword}" class="pageicon"></a></li>
+								<li class="prev"><a href="notice.do?page=${curpage-1}&type=${type}&keyword=${keyword}" class="pageicon"></a></li>
 							</c:if>
 							<c:forEach var="i" begin="${startpage}" end="${endpage}" step="1">
 								<c:set var="css" value=""/>
 								<c:if test="${i==curpage}">
 									<c:set var="css" value="style=\"color: #0052d4\""/>
 								</c:if>
-								<li class="page_list"><a href="notice.do?page=${i}" ${css} class="pagenum">${i}</a></li>
+								<li class="page_list"><a href="notice.do?page=${i}&type=${type}&keyword=${keyword}" ${css} class="pagenum">${i}</a></li>
 							</c:forEach>
 							<c:if test="${curpage!=endpage}">
-								<li class="next" ><a href="notice.do?page=${curpage+1}" class="pageicon"></a></li>
-								<li class="next_end"><a href="notice.do?page=${total}" class="pageicon"></a></li>
+								<li class="next" ><a href="notice.do?page=${curpage+1}&type=${type}&keyword=${keyword}" class="pageicon"></a></li>
+								<li class="next_end"><a href="notice.do?page=${total}&type=${type}&keyword=${keyword}" class="pageicon"></a></li>
 							</c:if>
 						</ul>
-						<div class="notice_write">
-						<form action="notice_insert.do" method="get">
-                             <input type="hidden" name="page" value="${curpage }" style="display: inline-block;"> 
-							<button class="btn btn-sm btn-info text-right" style="display: inline-block;">글쓰기</button>
-						</form>
-						</div>
+						<c:if test="${sessionScope.admin==1}">
+							<div class="notice_write">
+							<form action="notice_insert.do" method="get">
+								 <input type="hidden" name="page" value="${curpage }" style="display: inline-block;">
+								<button class="btn btn-sm btn-info text-right" style="display: inline-block;">글쓰기</button>
+							</form>
+							</div>
+						</c:if>
 					</div>
 				</div>
 			</div>

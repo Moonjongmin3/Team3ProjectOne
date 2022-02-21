@@ -2,4 +2,5 @@
 <beans>
 	<bean class="model.IndexModel"/>
 	<bean class="model.NoticeModel"/>
+	<bean class="model.LoginModel"/>
 </beans>
