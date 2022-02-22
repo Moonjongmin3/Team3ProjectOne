@@ -9,6 +9,7 @@ public class LoginDAO {
     private PreparedStatement ps;
     private ConnectionManager cm = new ConnectionManager();
 
+    // 추후 String => UserVO로 바꾸기
     public String isLogin(String id,String pwd){
         String result="";
         try{

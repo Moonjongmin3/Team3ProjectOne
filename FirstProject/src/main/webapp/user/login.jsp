@@ -24,7 +24,7 @@
                 <div id="loginwrap">
                     <h3>로그인</h3>
                     <div id="login">
-                        <h3 id="log1" class="text-center">
+                        <h3 id="log1" class="text-center" >
                             <img src="../img/logo.png" alt="쌍용Books 로고" width="300px">
                         </h3>
                         <p id="log2"><strong>WELCOME&#33;</strong>&nbsp쌍용BOOKS에 오신것을 환영합니다.</p>
@@ -56,7 +56,7 @@ function loginChk() {
         form.pwd.focus();
         return;
     }
-    form.action = "../login/login_ok.do";
+    form.action = "../user/login_ok.do";
     form.submit();
 }
 </script>

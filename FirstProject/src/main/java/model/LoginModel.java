@@ -14,16 +14,16 @@ import java.util.StringTokenizer;
 
 public class LoginModel {
 	
-	@RequestMapping("login/login.do")
+	@RequestMapping("user/login.do")
 	public String login_main(HttpServletRequest request,HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String userId=(String)session.getAttribute("userId");
-//		if(userId!=null)
-//			return "redirect:../main/main.do";
-		request.setAttribute("main_jsp", "../login/login.jsp");
+		if(userId!=null)
+			return "redirect:../main/main.do";
+		request.setAttribute("main_jsp", "../user/login.jsp");
 		return "../main/main.jsp";
 	}
-	@RequestMapping("login/login_ok.do")
+	@RequestMapping("user/login_ok.do")
 	public String login_check(HttpServletRequest request,HttpServletResponse response){
 		try {
 			HttpSession session= request.getSession();
@@ -31,19 +31,14 @@ public class LoginModel {
 			String pwd = request.getParameter("pwd");
 			String check = request.getParameter("check");
 			LoginDAO dao = new LoginDAO();
+			// UserVO로 결과값을 받을지 고민
 			String result = dao.isLogin(id, pwd);
-			if (result.equals("NOID")) {
-				// js 추가해야 함
-				return "redirect:../login/login.do";
-			}else if(result.equals("NOPWD")){
-				// js 추가해야 함
-				return "redirect:../login/login.do";
-			}else {
+			request.setAttribute("result",result);
+			if(!(result.equals("NOID")||result.equals("NOPWD"))){
 				StringTokenizer st = new StringTokenizer(result, "|");
-				String name=st.nextToken();
+
+				session.setAttribute("userName",st.nextToken());
 				String admin_check=st.nextToken();
-				
-				
 				if(admin_check.equals("N")){
 					session.setAttribute("admin",0);
 				}else {
@@ -51,20 +46,20 @@ public class LoginModel {
 				}
 				session.setAttribute("login", 1);
 				session.setAttribute("userId",id);
-				session.setAttribute("userName",name);
 			}
 		}catch (Exception e){
 			e.printStackTrace();
 		}
-		return "redirect:../main/main.do";
+		return "../user/login_ok.jsp";
 	}
 
-	@RequestMapping("login/logout.do")
+	@RequestMapping("user/logout.do")
 	public String logout(HttpServletRequest request,HttpServletResponse response){
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("userId");
 		LoginDAO dao = new LoginDAO();
 		dao.logout(id);
+
 		session.invalidate();
 		return "redirect:../main/main.do";
 	}

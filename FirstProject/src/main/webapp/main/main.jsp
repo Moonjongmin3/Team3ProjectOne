@@ -96,10 +96,10 @@
 							<li class="top-list-element sign-in">
 								<div class="btn-sign-in">
 									<c:if test="${sessionScope.userId != null}" var="loginCheck">
-										<a href="../login/logout.do">로그아웃</a>
+										<a href="../user/logout.do">로그아웃</a>
 									</c:if>
 									<c:if test="${sessionScope.userId == null}" var="loginCheck">
-										<a href="../login/login.do">로그인</a>
+										<a href="../user/login.do">로그인</a>
 									</c:if>
 								</div>
 							</li>
