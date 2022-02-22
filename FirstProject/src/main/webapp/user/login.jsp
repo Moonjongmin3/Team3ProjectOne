@@ -15,7 +15,7 @@
     
     <!--    파비콘링크 영역    -->
     <link rel="shortcut icon" href="#" type="image/x-icon">
-  
+  <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
     <div id="wrap">

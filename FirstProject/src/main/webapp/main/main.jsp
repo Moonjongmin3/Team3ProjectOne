@@ -7,12 +7,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>MainPage</title>
-	<!-- Index 페이지 StyleSheet -->
-	<link rel="stylesheet" href="../css/index.css">
+	
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+<!-- Index 페이지 StyleSheet -->
+	<link rel="stylesheet" href="../css/index.css">
 <!-- Index 페이지 StyleSheet -->
 <link rel="stylesheet" href="../css/common.css">
 <link rel="stylesheet" href="../css/customer.css">
@@ -86,9 +87,14 @@
 					<div class="col-lg-7 col-sm-12 top-bar-content">
 						<ul class="top-list">
 							<c:if test="${sessionScope.userId != null}" var="loginCheck">
-							<li class="top-list-element cart"><a href="#">장바구니</a></li>
-							<li class="top-list-element mypage"><a href="#">주문배송</a></li>
-							<li class="top-list-element sign-up"><a href="#">마이페이지</a></li>
+								<c:if test="${sessionScope.admin==0 }">
+									<li class="top-list-element cart"><a href="#">장바구니</a></li>
+									<li class="top-list-element mypage"><a href="#">주문배송</a></li>
+									<li class="top-list-element sign-up"><a href="#">마이페이지</a></li>
+								</c:if>
+								<c:if test="${sessionScope.admin==1 }">
+									<li class="top-list-element sign-up"><a href="#">관리자페이지</a></li>
+								</c:if>
 							</c:if>
 							<c:if test="${sessionScope.userId == null}">
 								<li class="top-list-element sign-up"><a href="#">회원가입</a></li>
@@ -125,7 +131,7 @@
 				<div class="row">
 					<div class="hidden-xs col-sm-1 col-sm-offset-1" id="logo-space"><a href="../main/main.do">LOGO</a></div>
 					<div class="col-xs-12 col-xs-offset-0 col-sm-8 col-md-6 col-sm-offset-1">
-						<form action="BookList.do" method="get" name="search_form" class="form-inline">
+						<form action="../book/searchList.do" method="get" name="search_form" class="form-inline">
 							<div class="form-group search-group">
 								<select class="form-control search-category" name="searchCategory">
 									<option value="통합검색">통합검색</option>
