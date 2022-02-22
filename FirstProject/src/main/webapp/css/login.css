@@ -9,7 +9,7 @@
 #contentwrap > div {
     min-width: 1024px;
     height: 800px;
-    background: url(../images/login_page.jpg)center no-repeat;
+    background: url(../img/login_backpage.png)center no-repeat;
     background-attachment: fixed;
     background-position: top;
 }
